@@ -1,35 +1,35 @@
 import React from 'react'
-s
+
 export default class Form extends React.Component {
-  onSubmit = evt => {
-    evt.preventDefault()
-    this.props.onSubmit()
+  constructor() {
+    super()
+    this.state = {
+      input: ""
+    }
   }
 
-  onChange = evt => {
-    const { value, id } = evt.target;
-    this.props.onChange{id, value}
+  handleChange = (e) => {
+    this.setState({
+      ...this.state,
+      input: e.target.value
+    })
   }
-    
+
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.handleAdd(this.state.input);
+  }
   render() {
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          type="text"
-          id="textInput"
-          placeholder="type text"
-          value={this.props.textInput}
-          onChange={this.onChange}
-        />
-        <input
-          type="text"
-          id="textInput"
-          placeholder="type text"App.js
-          value={this.props.textInput}
-          onChange={this.onChange}
-        />
-        <input type="submit" />
-      </form>
+        <form >
+          <label>
+            <input type="text" onChange={this.handleChange}></input>
+            <button onClick={this.handleSubmit}>Add Todo</button>
+            {/*<button onClick={this.handleAdd}>Add Todo</button>
+            <button>Clear Completed</button>*/}
+          </label>
+        </form>
     )
   }
 }
